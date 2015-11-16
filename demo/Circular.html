@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>圆环进度条</title>
+	<style>
+		/*测试1*/
+		.cirque{
+			background: url('/sources/Circular.png') no-repeat center center;
+			width: 125px;
+			height: 125px;
+		}
+		.percent-0{
+			background-position: 200px 0;
+		}
+		.percent-25{
+			background-position: 0 0;
+		}
+		.percent-50{
+			background-position: -128px 0;
+		}
+		.percent-75{
+			background-position: -254px 0;
+		}
+		.percent-100{
+			background-position: -382px 0 ;
+		}
+		.num{
+			position: relative;
+			top: 50px;left:50px;
+		}
+		
+	</style>
+	
+	<style>
+		#test3{
+			position: relative;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			box-shadow: 0 0 0em 0.2em lightblue inset;			
+		}
+		#test3 div{
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			clip: rect(0,50px,50px,25px);
+			border-radius: 50%;
+			box-shadow: 0 0 0 0.2em lightblue inset;
+			animation: circle0-180 1s ease-in-out infinite;
+		}
+		
+		#test3 div::after{
+			content: '';
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			clip: rect(0,25px,50px,0px);
+			border-radius: 50%;
+			box-shadow: 0 0 0 0.2em dodgerblue inset;
+			animation: circle180-0 1s ease-in-out infinite;
+		}
+		
+		
+		@keyframes circle0-180{
+			0%{
+				transform: rotate(0deg);
+			}
+			100%{
+				transform: rotate(180deg);
+			}
+		}
+		
+		@keyframes circle180-0{
+			0%{
+				transform: rotate(0deg);
+			}
+			100%{
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+	<style>
+		#test4{
+			position: relative;		
+		}
+		.circle-left{
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			clip: rect(0,50px,50px,25px);					
+		}
+		.circle-left>div{
+			content: '';
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			box-shadow: inset 0 0 0 0.4em green;
+			border-radius: 50%;
+			transition: 0.1s;
+			clip: rect(0,25px,50px,0);
+		}
+		.circle-right{
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			clip: rect(0,25px,50px,0);	
+		}
+		.circle-right>div{
+			content: '';
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			box-shadow: inset 0 0 0 0.4em green;			
+			clip: rect(0,50px,50px,25px);	
+		}
+ 		#test4 span{
+			position: relative;
+		    display: inline-block;
+		    line-height: 50px;
+		    width: 50px;
+		    text-align: center;
+		}
+		/*canvas*/
+/*
+		canvas{
+			transform:rotate(-90deg);
+		}
+*/
+	</style>
+</head>
+<body>
+<h2>设置背景图片</h2>
+	<div id="jdt" class="cirque percent-0">
+		<span class="num"></span>
+	</div>
+<h2>圆环loading效果</h2>
+	
+	<div id="test3">
+		<div></div>
+	</div>
+	
+	<h2>css3 box-shadow clip transform</h2>
+	<div id="test4">
+		<div class="circle-left">
+			<div></div>
+		</div>
+		<div class="circle-right">
+			<div></div>
+		</div>
+		<span>0%</span>
+	</div>
+<h2>html5 canvas</h2>	
+<canvas id="myCanvas" width="150" height="150" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+	<script>
+		var jdt=document.querySelector('#jdt');
+		var num=document.querySelector('.num');
+		var i=0;
+		
+		setInterval(function(){
+			var oldClass='percent-'+i;
+			i=i>75?0:i+25;			
+			var newClass='percent-'+i;
+			jdt.classList.remove(oldClass);
+			jdt.classList.add(newClass);
+			num.innerText=i+'%'
+		},1000)
+		
+		//test4
+		var numPercent=document.querySelector('#test4>span').innerText;
+		var test4=parseFloat(numPercent);
+		
+		setInterval(function(){
+			var dusu=test4*3.6;
+
+			if(dusu>180){
+				document.querySelector('.circle-left>div').style.transform='rotate('+180+'deg)';
+				document.querySelector('.circle-right>div').style.transform='rotate('+(dusu-180)+'deg)';
+			}else{
+				document.querySelector('.circle-left>div').style.transform='rotate('+dusu+'deg)';
+				document.querySelector('.circle-right>div').style.transform='rotate(0deg)';
+				//  div1.style
+				// $().css('transform','rotate('+180+'deg)')
+			}
+			document.querySelector('#test4>span').innerText=test4+'%'
+		 	test4=test4>=100?0:++test4;			
+		},100)
+
+
+		//canvas
+		var d=0
+		setInterval(function(){
+            
+		d++;
+		var c=document.getElementById("myCanvas");
+		var ctx=c.getContext("2d");
+            ctx.clearRect(0,0,150,150);
+            
+		ctx.beginPath();
+		ctx.arc(50,50,50,1.5*Math.PI,(d+75)/50*Math.PI);
+            ctx.fillText(d+'%',50,50);
+		ctx.stroke();
+		d=d%100;
+		},100)
+	</script>
+</body>
+</html>
