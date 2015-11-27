@@ -2,7 +2,7 @@
  * Syntax highlighting styles
  */
 .highlight {
-    background: #fff;
+    background: #ddd;
     @extend %vertical-rhythm;
 
     .highlighter-rouge & {
@@ -10,7 +10,7 @@
     }
 
 .language-,.language-text{
-    color: #FFF;
+    color: #ddd;
 }
 
     .c     { color: #998; font-style: italic } // Comment
@@ -52,9 +52,9 @@
     .nn    { color: #555 } // Name.Namespace
     .nt    { color: #F92672 } // Name.Tag
     .nv    { color: #008080 } // Name.Variable
-    .nx    {color:#FFF}
+    .nx    {color:#ddd}
     .ow    { font-weight: bold } // Operator.Word
-    .p     {color: #FFF}
+    .p     {color: #ddd}
     .w     { color: #bbb } // Text.Whitespace
     .mf    { color: #099 } // Literal.Number.Float
     .mh    { color: #099 } // Literal.Number.Hex
