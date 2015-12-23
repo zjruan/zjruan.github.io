@@ -2,8 +2,8 @@
 layout: post
 title:  "Javascript最佳实践笔记"
 date:   2015-12-22
-categories: jekyll update
-permalink: JavaScriptBestPractices
+categories: frontend
+permalink: /frontend/JavaScriptBestPractices
 ---
 
 [原文链接](http://www.w3.org/wiki/JavaScript_best_practices) --[页面快照](/demo/PageSnapshot/JavaScript%20best%20practices%20-%20W3C%20Wiki.html)

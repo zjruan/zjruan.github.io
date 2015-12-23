@@ -6,16 +6,13 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Your awesome title
-email: your-email@domain.com
+title: ZJRUAN
+email: rzhj@vip.qq.com
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  写博客一方面是为了分享，更多的是记录一些知识，方便日后回忆，同时也加深自己对该知识的理解。
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+github_username:  zjruan
 
 baseDomain: http://www.zjruan.com
 # Build settings
@@ -24,4 +21,3 @@ redcarpet:
   extensions: [ "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
   # extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
 # markdown: kramdown
-

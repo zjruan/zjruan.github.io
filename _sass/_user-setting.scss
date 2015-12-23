@@ -1,0 +1,47 @@
+/**
+ * User Setting Style
+ */
+.nav {
+    &.nav-side-right {
+        position: absolute;
+        top: 0; 
+        right: 0;
+        float: right;
+        width: $side-nav-width;
+    }
+        
+    > ul > li, > h2 {        
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    } 
+    > ul > li {
+        list-style: none;
+    }
+    
+    @include media-query($on-palm) {
+        &.nav-side-right {
+            position: relative;
+            width: 100%;
+            
+        }
+    }   
+}
+
+.home {
+    &.with-nav {
+        margin-right: $side-nav-width;
+        min-height: 20rem;
+    }
+    
+    @include media-query($on-palm) {
+        &.with-nav{
+            margin-right: auto;
+            min-height: 0;
+        }        
+    }
+}
+
+.wrapper {
+    position: relative;
+}
