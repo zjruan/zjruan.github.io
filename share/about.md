@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-permalink: /share/about
+permalink: /share/
 nav_sort: 4
 ---
 
