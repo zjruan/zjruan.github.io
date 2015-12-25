@@ -15,47 +15,57 @@ define(function(require,exports,module){
     //        </li>        
     //     </ul>
     //     </div>
-    // </script>
-    module.exports.init = function () {
-        console.log('kaishi');
-    }
+    // </script>    
     
-    var template = function(data){
-        var html = "",itemHtml = "";            
-        itemHtml = data.list.map(function(item){
-            return '<li><span class="post-meta">' + item.post_meta + '</span>\
-                        <h2>' +
-                        '<a class="post-link" href="' + item.post_link + '">环形进度条的实现</a>' + 
-                        '</h2>\
-                   </li>'; 
-        }).join("");
+    // 判断浏览器是否支持pushState属性
+    var isPushState = Object.prototype.toString.call(history.pushState) === "[object Function]";
+    if (isPushState){    
+        var template = function(data){
+            var html = "",itemHtml = "";            
+            itemHtml = data.list.map(function(item){
+                return '<li><span class="post-meta">' + item.post_meta + '</span>\
+                            <h2>' +
+                            '<a class="post-link" href="' + item.post_link + '">' + item.title + '</a>' + 
+                            '</h2>\
+                    </li>'; 
+            }).join("");
+            
+            html = '<div class="home">' +
+                '<h1 class="page-heading">' + data.title + '</h1>' +
+                '<ul class="post-list">' + 
+                    itemHtml +
+                '</ul>' +
+            '</div>' ;
+            return html;            
+        }
         
-        html = '<div class="home">' +
-            '<h1 class="page-heading">' + data.title + '</h1>' +
-            '<ul class="post-list">' + 
-                itemHtml +
-            '</ul>' +
-          '</div>' ;
-        return html;            
-    }
-    
-    var ajax = function (url ,callback){
-        var XHR = new XMLHttpRequest();
-    }
-    
-    var isPushState = Object.prototype.toString.call(history.pushState) === "[object Function]"
-    if (isPushState){
+        var ajax = function (url, callback){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4){
+                    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) { 
+                        var jsonStr = xhr.responseText.replace(/(<script>)|(<\/script>)|(,$)/g,"");
+                        jsonStr = jsonStr.substring(0,jsonStr.lastIndexOf(',')) + "]}";
+                        var html = callback(JSON.parse(jsonStr));
+                        document.querySelector('.page-content .wrapper').innerHTML = html;
+                    } else {
+                        console.log("Request was unsuccessful: " + xhr.status);
+                    }
+                }
+            }
+            xhr.open("get", url, true);
+            xhr.send(null);
+        }
+
         var pjaxElement = document.querySelector(".pjax-link");
+        
+        
         pjaxElement.addEventListener("click",function(event){
             var targetElement = event.target ;
             
-            if(targetElement.innerText.toLowerCase() === "about" ){
+            if( targetElement.nodeName !== "A" || targetElement.innerText.toLowerCase() === "about" ){
                 return ;
             }
-            
-            var hrefVal = targetElement.getAttribute("href").replace("/","").toLowerCase();
-            
-            var newHref = "/share/pjaxdata-" + hrefVal;
             
             // 阻止默认事件
             event.preventDefault();
@@ -63,8 +73,17 @@ define(function(require,exports,module){
             // 阻止事件冒泡
             event.stopPropagation();
             
+            var hrefVal = targetElement.getAttribute("href").replace(/\//g,"").toLowerCase();
             
-        },false);
+            var newHref = "/share/pjaxdata-" + hrefVal;
+            
+            ajax(newHref, template);
+            
+            history.pushState(null,targetElement.innerText,targetElement.href);  
+        },false); 
         
-    }  
+        module.exports.init = function () {
+        console.log('pjax 生效');
+        }        
+    }
 })
