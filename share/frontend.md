@@ -19,5 +19,4 @@ nav_sort: 1
       </li>
     {% endfor %}
   </ul>
-  
 </div>

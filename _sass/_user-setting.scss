@@ -1,3 +1,4 @@
+@charset "utf-8";
 /**
  * User Setting Style
  */
@@ -44,4 +45,17 @@
 
 .wrapper {
     position: relative;
+}
+
+  
+// 添加图片放大缩小的功能
+
+.post img{
+    max-width:100px;
+    margin:20px;
+    transition:0.5s;
+}
+  
+.post img.big-img{
+    max-width:100%;
 }

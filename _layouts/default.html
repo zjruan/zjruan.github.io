@@ -14,18 +14,21 @@
     </div>
 
     {% include footer.html %}
-    
-      <script>
-        // 百度统计
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "//hm.baidu.com/hm.js?4461f2d49c12c7c1e4fd372baa82b125";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
-      </script>
-      
-  </body>
 
+    <script src="/sources/sea-modules/sea.js"></script>
+    <script>
+        seajs.config({
+            base:"/sources/sea-modules/",
+            alias: {}
+        })
+        
+        if (location.href.indexOf("?dev") > 0){
+            seajs.use("/sources/static/common/src/common.js"); //开发环境
+        } else {
+            seajs.use("/sources/static/common/src/common.js"); // 发布环境
+        }
+    </script>
+    <!--百度统计-->
+     <script src="//hm.baidu.com/hm.js?4461f2d49c12c7c1e4fd372baa82b125"></script>
+  </body>
 </html>
