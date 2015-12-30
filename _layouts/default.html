@@ -14,21 +14,5 @@
     </div>
 
     {% include footer.html %}
-
-    <script src="/sources/sea-modules/sea.js"></script>
-    <script>
-        seajs.config({
-            base:"/sources/sea-modules/",
-            alias: {}
-        })
-        
-        if (location.href.indexOf("?dev") > 0){
-            seajs.use("/sources/static/common/src/common.js"); //开发环境
-        } else {
-            seajs.use("/sources/static/common/src/common.js"); // 发布环境
-        }
-    </script>
-    <!--百度统计-->
-     <script src="//hm.baidu.com/hm.js?4461f2d49c12c7c1e4fd372baa82b125"></script>
   </body>
 </html>

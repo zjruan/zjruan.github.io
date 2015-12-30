@@ -19,7 +19,8 @@ define(function(require,exports,module){
     
     // 判断浏览器是否支持pushState属性
     var isPushState = Object.prototype.toString.call(history.pushState) === "[object Function]";
-    if (isPushState){    
+    if (isPushState){  
+        var nprogress = require('nprogress.js');
         var template = function(data){
             var html = "",itemHtml = "";            
             itemHtml = data.list.map(function(item){
@@ -39,7 +40,10 @@ define(function(require,exports,module){
             return html;            
         }
         
+        var htmlCatch={};
+        
         var ajax = function (url, callback){
+                       
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4){
@@ -66,7 +70,7 @@ define(function(require,exports,module){
             if( targetElement.nodeName !== "A" || targetElement.innerText.toLowerCase() === "about" ){
                 return ;
             }
-            
+            nprogress.start();
             // 阻止默认事件
             event.preventDefault();
             
@@ -79,11 +83,16 @@ define(function(require,exports,module){
             
             ajax(newHref, template);
             
-            history.pushState(null,targetElement.innerText,targetElement.href);  
+            history.pushState("",targetElement.innerText,targetElement.href);  
+            nprogress.done();
         },false); 
         
+        window.onpopstate = function(){           
+            console.log(location.href);
+        }
+        
         module.exports.init = function () {
-        console.log('pjax 生效');
+            console.log('pjax 生效');
         }        
     }
 })
