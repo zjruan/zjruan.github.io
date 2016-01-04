@@ -2,7 +2,6 @@
  * @license MIT */
 
 ;(function(root, factory) {
-debugger
   if (typeof define === 'function' && define.amd) {
     define(factory);
   } else if (typeof define === 'function' && define.cmd) {
