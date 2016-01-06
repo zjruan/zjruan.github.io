@@ -105,12 +105,6 @@ $blog-skew-Angle:     20deg;
     }
 }
 
-
-    .post-link{
-        white-space: normal;
-        float: left;
-        line-height: 35px;
-    }
     .card-wrapper {
         overflow-x: hidden;
     }
@@ -118,6 +112,12 @@ $blog-skew-Angle:     20deg;
         transition: 1s ease-in-out;
         white-space: nowrap;
         -webkit-user-select: none;
+        
+        .post-link {
+        white-space: normal;
+        float: left;
+        line-height: 35px;
+    }
     }
     .card {
         display: inline-block;
