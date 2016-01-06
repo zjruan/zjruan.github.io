@@ -105,3 +105,40 @@ $blog-skew-Angle:     20deg;
     }
 }
 
+
+    .post-link{
+        white-space: normal;
+        float: left;
+        line-height: 35px;
+    }
+    .card-wrapper {
+        overflow-x: hidden;
+    }
+    #cardTest {
+        transition: 1s ease-in-out;
+        white-space: nowrap;
+        -webkit-user-select: none;
+    }
+    .card {
+        display: inline-block;
+        width: 160px;
+        margin: 10px;
+        height: 280px;
+        box-shadow: 0 0 1px;
+        border: 1px solid black;
+        transition: 1s ease-in-out;        
+    }
+    .card {
+        text-align: center;
+        line-height: 80px;
+    }
+    
+    .card.left {
+        transform:perspective(100px) rotateY(45deg) scale(0.4);
+    }
+    .card.active {
+        transform: skewY(0) scale(1);
+    }
+    .card.right {
+        transform:perspective(100px) rotateY(-45deg) scale(0.4);
+    }
