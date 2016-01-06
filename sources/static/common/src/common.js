@@ -21,4 +21,9 @@ define(function(require,exports,module){
     // 导航栏Pjax
     var _navPjax = require('./myblogs-pjax.js');
     _navPjax.init();
+    
+    //装饰条
+    var Decorate = require('decorate.js');
+    var de= new Decorate(document.querySelector('.decorate'));
+    de.render();
 })

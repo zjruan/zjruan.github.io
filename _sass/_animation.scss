@@ -3,3 +3,14 @@
 	0% {transform: translateX(0);}
 	100% {transform: translateX(-100%);}
 }
+
+@keyframes Left2Right{
+    0% {left: 100%}
+    80% {left: 0%}
+    100% {left: -100%}
+}
+@keyframes Right2Left{
+    0% {right: 100%}
+    80% {right: 0%}
+    100% {right: -100%}
+}
