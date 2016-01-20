@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1 ">
+  <title>React进阶第二步</title>
+  
+  
+</head>
+<body>
+  
+  <div id="content">
+    <p>如果你看到这段文字，表示React没有生效！</p>
+  </div>
+  
+  <script src="../sources/lib/react.js"></script>
+  <script src="../sources/lib/react-dom.js"></script>
+  <script src="../sources/lib/browser.min.js"></script>
+  <script src="../sources/lib/jquery.min.js"></script>
+  <script type="text/babel">
+    
+    var ProductRow = React.createClass({
+      render: function(){
+        return (
+          <div className = "row">
+            <span>{this.props.data.name}</span>
+            &nbsp;
+            <span>{this.props.data.price}</span>
+          </div>
+        );
+      }
+    });
+    
+    var ProductRowList = React.createClass({
+      render: function(){
+        var rowList = this.props.products.map(function(product){
+          return <ProductRow data = {product} />
+        });
+        
+        return (
+          <div className = "rowList">
+            {rowList}
+          </div>
+        );
+      }
+    });
+    
+    var ProductCategoryRow = React.createClass({
+      render: function(){
+        return (
+          <div className='ProductCategoryRow'>
+            <h3>{this.props.category.categoryName}</h3>
+            <ProductRowList products={this.props.category.products} />
+          </div>
+        );
+      }
+    });
+    
+    var ProductTable = React.createClass({   
+      render: function(){
+        var productList = this.props.categorys.map(function(category){
+          return <ProductCategoryRow category={category} />
+        });
+        
+        return (
+            <div className="productTable">
+              {productList}
+            </div>
+          );
+      }
+    });
+    
+    
+    var FilterableProductTable = React.createClass({
+      loadData:function(data){
+        this.setState({data:data})
+      },    
+      getInitialState: function() {
+        return {data:[]};
+      },    
+      componentWillMount: function(){
+        var data = [
+          {
+            categoryName: "Sporting Goods",
+            products:[
+              {name:"iPhone5",price:"$199.9"},
+              {name:"Nokia",price:"$99.9"},
+              {name:"Samsung",price:"$189.9"}
+            ]
+          },{
+            categoryName: "Eelctronics",
+            products:[
+              {name:"iPhone5",price:"$199.9"},
+              {name:"Nokia",price:"$99.9"},
+              {name:"Samsung",price:"$189.9"}
+            ]
+          }
+        ];
+        
+        this.loadData(data);
+      },
+    
+      render: function(){ 
+        return (
+          <div>
+            <h1>产品过滤表</h1>
+            <ProductTable categorys={this.state.data} />
+          </div>
+        );
+      }
+    });
+    ReactDOM.render(
+      <FilterableProductTable />,
+      document.getElementById('content')
+    );
+  </script>
+</body>
+</html>
