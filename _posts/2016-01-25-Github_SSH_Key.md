@@ -18,7 +18,7 @@ permalink: /collecting/github_ssh_key
 
 > SSH keys are a way to identify trusted computers without involving passwords. You can generate an SSH key and add the public key to your GitHub account by following the procedures outlined in this section.
 
-简单的说，就是ssh通信不用用户名和密码。当然，还需要设置一个口令（passphrases），否则本key无效。
+简单的说，就是ssh通信不用用户名和密码。当然，还需要设置一个口令（passphrases），如果直接回车，在push的时候，便不需要输入口令。
 
 ## 二、生成并使用 ssh key
 
