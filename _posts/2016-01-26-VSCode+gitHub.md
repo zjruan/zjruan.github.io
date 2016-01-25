@@ -18,7 +18,7 @@ permalink: /collecting/visualstudio_code_github
 ## 二、机遇巧合
 
 今天晚上闲来无事，玩了两把游戏感觉没意思，刚好想弄弄博客，于是开始折腾github 的 ssh key 。其实用起来非常简单，
-这是我以前感觉很高大上，没敢去搞。在上一片文章里简单的介绍了下ssh key,没看过的[可以去瞅瞅](/collecting/github_ssh_key.html)。
+这是我以前感觉很高大上，没敢去搞。在上一片文章里简单的介绍了下ssh key,没看过的[可以去瞅瞅](/collecting/github_ssh_key/)。
 
 ## 三、解决方案
 
