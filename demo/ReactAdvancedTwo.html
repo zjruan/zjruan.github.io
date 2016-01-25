@@ -21,9 +21,14 @@
     
     var ProductRow = React.createClass({
       render: function(){
+        var name = this.props.data.stocked ? this.props.data.name : 
+          <span style={{color:"red"}}>
+            {this.props.data.name}
+          </span>;
         return (
+
           <div className = "row">
-            <span>{this.props.data.name}</span>
+            <span>{name}</span>
             &nbsp;
             <span>{this.props.data.price}</span>
           </div>
@@ -34,7 +39,7 @@
     var ProductRowList = React.createClass({
       render: function(){
         var rowList = this.props.products.map(function(product){
-          return <ProductRow data = {product} />
+          return <ProductRow data = {product} key={product.name} />
         });
         
         return (
@@ -59,7 +64,7 @@
     var ProductTable = React.createClass({   
       render: function(){
         var productList = this.props.categorys.map(function(category){
-          return <ProductCategoryRow category={category} />
+          return <ProductCategoryRow category={category} key={category.categoryName} />
         });
         
         return (
@@ -70,6 +75,13 @@
       }
     });
     
+    var SearchBar = React.createClass({
+      render: function(){
+        return(
+          <div></div>
+        );        
+      }
+    });    
     
     var FilterableProductTable = React.createClass({
       loadData:function(data){
@@ -83,16 +95,16 @@
           {
             categoryName: "Sporting Goods",
             products:[
-              {name:"iPhone5",price:"$199.9"},
-              {name:"Nokia",price:"$99.9"},
-              {name:"Samsung",price:"$189.9"}
+              {name:"iPhone5",price:"$199.9",stocked:true},
+              {name:"Nokia",price:"$99.9",stocked:false},
+              {name:"Samsung",price:"$189.9",stocked:true}
             ]
           },{
             categoryName: "Eelctronics",
             products:[
-              {name:"iPhone5",price:"$199.9"},
-              {name:"Nokia",price:"$99.9"},
-              {name:"Samsung",price:"$189.9"}
+              {name:"iPhone5",price:"$199.9",stocked:true},
+              {name:"Nokia",price:"$99.9",stocked:true},
+              {name:"Samsung",price:"$189.9",stocked:false}
             ]
           }
         ];
