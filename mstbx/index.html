@@ -238,10 +238,10 @@
     function GenerateOrderList(orderList,files){
       var resultHtml = "";
       var extReg = /.(?:jpg|png)$/i;      
-      var extension = extReg.exec(files[0].name).toLowerCase();
+      var extension = extReg.exec(files[0].name);
       
       orderList.forEach(function(item,index){
-        resultHtml += createOrderItem(index, item, extension);
+        resultHtml += createOrderItem(index, item, extension[0].toLowerCase());
       })
       
       return resultHtml;      
