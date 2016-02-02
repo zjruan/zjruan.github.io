@@ -201,7 +201,8 @@
     
     // listIndex 列表序号
     // orderIndex 订单的序号
-    function createOrderItem(listIndex,orderIndex,extension){      
+    function createOrderItem(listIndex,orderIndex,extension){   
+      e   
       var pic0 = document.getElementById(orderIndex[0]+"00"+extension);
       var pic1 = document.getElementById(orderIndex+"1"+extension);
       var pic2 = document.getElementById(orderIndex+"2"+extension);
@@ -237,7 +238,7 @@
     function GenerateOrderList(orderList,files){
       var resultHtml = "";
       var extReg = /.(?:jpg|png)$/i;      
-      var extension = extReg.exec(files[0].name);
+      var extension = extReg.exec(files[0].name).toLowerCase();
       
       orderList.forEach(function(item,index){
         resultHtml += createOrderItem(index, item, extension);
