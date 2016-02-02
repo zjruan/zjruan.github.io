@@ -242,11 +242,17 @@
     
     // listIndex 列表序号
     // orderIndex 订单的序号
-    function createOrderItem(listIndex,orderIndex,extension){   
+    function createOrderItem(listIndex,orderIndex,){   
       // var pic0 = document.getElementById(orderIndex[0]+"00"+extension);
-      var pic1 = document.getElementById(orderIndex+"1"+extension);
-      var pic2 = document.getElementById(orderIndex+"2"+extension);
+      var pic1 = document.getElementById(orderIndex+"1"+".png");
+      var pic2 = document.getElementById(orderIndex+"2"+".png");
       var resultHtml = "",errorFile="";
+      if(!pic1 || !pic2){        
+      }else{
+        pic1=document.getElementById(orderIndex+"1"+".jpg");
+        pic2=document.getElementById(orderIndex+"1"+".jpg");
+      }
+      
       
       if (pic1 && pic2){
         resultHtml='<div class="item"> \
@@ -283,10 +289,8 @@
 
     function GenerateOrderList(files){
       var resultHtml = "";
-      var extReg = /.(?:jpg|png)$/i; 
-      var extension = extReg.exec(files[0].name);
       itemFileArr.forEach(function(item,index){
-        resultHtml += createOrderItem(index, item, extension[0].toLowerCase());
+        resultHtml += createOrderItem(index, item);
       })
       
       return resultHtml;      
