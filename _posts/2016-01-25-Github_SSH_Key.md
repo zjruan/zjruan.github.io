@@ -25,7 +25,7 @@ permalink: /collecting/github_ssh_key
 1. 下载git bash 工具，安装。[git tool 下载地址](http://git-scm.com/downloads)
 2. 打开git bash，键入`$ ssh-keygen -t rsa -b 4096 -C "git_user_name@foxmail.com"`
 
-    ```
+```
     $ ssh-keygen -t rsa -b 4096 -C "git_user_name@foxmail.com"
     Generating public/private rsa key pair.
     Enter file in which to save the key (/c/Users/ruanz/.ssh/id_rsa): //此处直接回车
@@ -48,7 +48,7 @@ permalink: /collecting/github_ssh_key
     |  . .            |
     +----[SHA256]-----+
 
-    ```
+```
 3. 找到公钥文件，用文本编辑器打开，然后全选 + 复制。  
 `ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDFDBA/8tFLHaq8G0iIl9CclYlYxlBvBbvGMQS+PHNPK
 8bKhRI0XqhIMICfaqoXW+PdUEygX4rzoFUTNd4KO0myL9XMf4dC5oBq9rVcbMd/r5XInayQiHJm0QKPkym

@@ -206,7 +206,7 @@
     </div>    
   </div> 
   <script>
-    (function(){
+  (function(){
     var _dragElement,startY;
     var fileEle = document.getElementById("files");
     var itemFileArr = [];
@@ -244,15 +244,11 @@
     // orderIndex 订单的序号
     function createOrderItem(listIndex,orderIndex){   
       // var pic0 = document.getElementById(orderIndex[0]+"00"+extension);
-      var pic1 = document.getElementById(orderIndex+"1"+".png");
-      var pic2 = document.getElementById(orderIndex+"2"+".png");
-      var resultHtml = "",errorFile="";
-      if(!pic1 || !pic2){        
-      }else{
-        pic1=document.getElementById(orderIndex+"1"+".jpg");
-        pic2=document.getElementById(orderIndex+"1"+".jpg");
-      }
+      var pic1 = document.getElementById(orderIndex+"1"+".png") || document.getElementById(orderIndex+"1"+".jpg");
       
+      
+      var pic2 = document.getElementById(orderIndex+"2"+".png") || document.getElementById(orderIndex+"1"+".jpg");
+      var resultHtml = "",errorFile="";
       
       if (pic1 && pic2){
         resultHtml='<div class="item"> \
@@ -270,9 +266,8 @@
             </div>\
           </div>';
       }else{
-        errorFile += "+|+"+orderIndex[0]+"00"+","+extension+
-        orderIndex+"1"+extension+","+
-        orderIndex+"2"+extension +"+|+";
+        errorFile += orderIndex+"1"+","+
+        orderIndex+"2"+"+|+";
       }
       if (errorFile.length>0){
         alert(errorFile+"文件找不到！");
@@ -360,7 +355,7 @@
     function mouseDownHandler(e){
       var ele = e.target;
       if(ele.classList.contains("dragImg")){
-      }else if(ele.parentNode.classList.contains("dragImg")){
+      }else if(ele.parentNode.classList && ele.parentNode.classList.contains("dragImg")){
         ele = ele.parentNode;
       }else{
         return;
