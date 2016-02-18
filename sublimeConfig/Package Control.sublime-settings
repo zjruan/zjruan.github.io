@@ -1,0 +1,42 @@
+{
+	"bootstrapped": true,
+	"http_proxy": "127.0.0.1:1080",
+	"https_proxy": "127.0.0.1:1080",
+	"in_process_packages":
+	[
+		"SVN",
+		"Terminal"
+	],
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"Babel",
+		"Color Highlighter",
+		"ConvertToUTF8",
+		"CSSfmt",
+		"DeleteBlankLines",
+		"DocBlockr",
+		"EJS",
+		"Emmet",
+		"EncodingHelper",
+		"FileDiffs",
+		"HTML-CSS-JS Prettify",
+		"Indent XML",
+		"Jade",
+		"Java Velocity",
+		"LESS",
+		"Markdown Preview",
+		"MarkdownEditing",
+		"MultiFill",
+		"Package Control",
+		"Pretty JSON",
+		"ReactJS",
+		"Sass",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SVN",
+		"Swig",
+		"Terminal",
+		"TypeScript"
+	]
+}

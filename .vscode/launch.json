@@ -2,10 +2,10 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Launch",
+			"name": "Launch jade",
 			"type": "node",
 			"request": "launch",
-			"program": "Test.js",
+			"program": "./demo/Study/NODE_MVA/12_jade/app.js",
 			"stopOnEntry": false,
 			"args": [],
 			"cwd": ".",
