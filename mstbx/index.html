@@ -316,7 +316,7 @@
     function imgPreview(files){
       var preview = document.getElementById("pre-view");
           
-      if( !files || !File.length) return;      
+      if( !files || !files.length) return;      
       if(FileReader){
         var curIndex = 0;
         var fr =new FileReader();
