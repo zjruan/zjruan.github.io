@@ -151,7 +151,26 @@
         <button id='btn-help'>查看使用帮助</button>
       </p>
       <div class="help">
-        <pre>
+         <pre>
+版本号：2.1.0
+文件类型为3种：列表图、订单图1、订单图2；
+命名规则：（支持png和jpg）
+  列表图：+x.png或者+x.jpg（x为正整数）；
+  订单图1：x1.png或者x1.jpg（x为正整数或者字母）；
+  订单图2：x2.png或者x2.jpg（x为正整数或者字母）。
+  例如：
+    订单列表图命名：+1.jpg、+2.jpg；
+    第1单命名为：11.jpg、12.jpg；
+    第2单命名为：21.jpg、22.jpg；
+    第3单命名为：a1.jpg、a2.jpg。
+  
+使用流程：
+  1、按照要求修改截图名称
+  2、文件名修改完成后，就可以点击上面的“选择文件”按钮添加所有的文件了。
+  3、初次生成出来的文件尚不能用，点击拖动“我的行程截图”，拖到想要的位置即可。
+  4、右键网页空白处，点击“打印”。
+        </pre>
+        <pre style="display:none">
 版本号：2.0.0
 文件类型为3种：列表图、订单图1、订单图2；
 命名规则：（支持png和jpg）
@@ -171,7 +190,7 @@
   3、可续传一组订单图。
         </pre>
         
-        <pre style="color:#999;text-decoration:line-through;">
+        <pre style="color:#999;text-decoration:line-through;display:none">
 版本号：1.0.1
 文件类型为3种：列表图、订单图1、订单图2；
 命名规则：（支持png和jpg）
@@ -207,10 +226,12 @@
   </div> 
   <script>
   (function(){
-    var _dragElement,startY;
+    var _dragElement,_lastElement,startY;
     var fileEle = document.getElementById("files");
     var itemFileArr = [];
     var listImgFileArr = [];
+    var listImgEleArr = [];
+    
     
     // 从文件列表中统计出单列表
     function getListByFiles(files){      
@@ -307,9 +328,11 @@
         div.appendChild(img);
       });
       
-      var listImgEleArr = document.querySelectorAll(".item-list-wrapper");
-      for(var i = 0, len = listImgEleArr.length; i < len; i++){
-        listImgEleArr[i].appendChild(div.cloneNode(true));
+      var listImgEleArrParent = document.querySelectorAll(".item-list-wrapper");
+      for(var i = 0, len = listImgEleArrParent.length; i < len; i++){
+          var newEle = div.cloneNode(true);
+          listImgEleArr.push(newEle);
+          listImgEleArrParent[i].appendChild(newEle);
       } 
     }
     
@@ -362,7 +385,15 @@
       }
       
       if (ele.classList.contains("dragImg") ){
-        _dragElement = ele;
+          
+        _dragElement = ele;  
+          
+        // 第一次访问 或者 点击不是同一元素
+        if(!_lastElement || _lastElement !== _dragElement){
+            listImgEleArr.splice(listImgEleArr.indexOf(ele), 1);
+        }
+        _lastElement = _dragElement; 
+        
         startY = e.clientY; //鼠标的y轴位置
         
         // 添加鼠标移动和松开的监听处理时间
@@ -381,8 +412,13 @@
     function mouseMoveHandler(e){
       if (_dragElement){
         var offsetY=extractNumber(document.defaultView.getComputedStyle(_dragElement,null).top);
-        _dragElement.style.top=offsetY+e.clientY-startY+"px";
+        var resultTopStyle = offsetY+e.clientY-startY+"px"
+        _dragElement.style.top = resultTopStyle;
         startY=e.clientY;
+        
+        listImgEleArr.forEach(function(item, index){
+            item.style.top = resultTopStyle;
+        })
       }
     }
     
@@ -392,7 +428,7 @@
 	      document.onmousemove = null; 
 	      document.onmouseup = null;  
 	      document.onselectstart = null;  
-	      _dragElement.ondragstart = null;    
+	      _dragElement.ondragstart = null;
 	      _dragElement = null;   
 	    }  
     }
@@ -404,8 +440,8 @@
       var helpImgArea = document.querySelector("#help-img-area");
       if(helpImgArea.innerText.trim() == ""){
         helpImgArea.innerHTML = '\
-          <img src="dddc_help_01.jpg" alt="">\
           <img src="dddc_help_02.jpg" alt="">\
+          <img src="dddc_help_01.jpg" alt="">\
           <img src="dddc_help_03.gif" alt="">\
           <img src="dddc_help_04.jpg" alt="">'; 
       }
