@@ -231,6 +231,7 @@
   </div> 
   <script>
   (function(){
+    // 初始化数据
     var _dragElement,_lastElement,startY;
     var fileEle = document.getElementById("files");
     var itemFileArr = [];
@@ -394,8 +395,10 @@
         _dragElement = ele;  
           
         // 第一次访问 或者 点击不是同一元素
-        if(!_lastElement || _lastElement !== _dragElement){
-            listImgEleArr.splice(listImgEleArr.indexOf(ele), 1);
+        var index = listImgEleArr.indexOf(ele);
+        // 目标元素是否在图像数组中
+        if(index >= 0 && _lastElement !== _dragElement){
+            listImgEleArr.splice(index, 1);
         }
         _lastElement = _dragElement; 
         
@@ -421,9 +424,11 @@
         _dragElement.style.top = resultTopStyle;
         startY=e.clientY;
         
-        listImgEleArr.forEach(function(item, index){
-            item.style.top = resultTopStyle;
-        })
+        if(_dragElement.parentNode.className.indexOf("item-list") >= 0 ){        
+            listImgEleArr.forEach(function(item, index){
+                item.style.top = resultTopStyle;
+            })
+        }
       }
     }
     
