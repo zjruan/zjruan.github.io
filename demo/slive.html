@@ -12,9 +12,8 @@
           }
         
           var ele = document.querySelector('#xx');
-          
-          ele.innerHTML = strList[parseInt(Math.random()*129)];
-          
+          var text = strList[parseInt(Math.random()*129)];
+          ele.innerHTML = text.substr(text.indexOf('、')+1);
         }
     </script>
 </head>
