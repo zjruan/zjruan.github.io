@@ -1,0 +1,94 @@
+/**
+* FileName: 栅格化
+* Author  : zjruan / https://github.com/zjruan
+* Date    : 2016-03-15
+* Desc    : xxxxxxxx
+*/
+
+/* 由于使用的calc，因此样式不支持ie8及以下，另外inline-block在ie8下也有问题，需要先设置inline，再设置zoom：1，才能达到预期效果 */
+/* 由于此处使用的是inline-block的解决方案，因此不需要清除浮动 */
+/*.clearfix:before,.clearfix:after{
+    content: "";
+    display: table;
+    clear: both;
+}*/
+body,html,div{
+    margin: 0;
+    padding: 0;
+}
+[class*="col-"]{
+    box-sizing: border-box;
+    display: inline-block;
+    border:1px solid #999;
+    background-color: #eee;
+    margin: 10px;
+    height: 50px;
+}
+/* font-size:0 为了消除div之间的间隙，间隙产生的原因是div节点之间有“空文本节点” */
+
+.wrapper{
+    font-size: 0;
+    padding: 10px;
+    width: auto;
+}
+.col-md-1{
+    width: calc(8.33333333% - 20px );
+}
+.col-md-2{
+    width: calc(16.66666666% - 20px );
+}        
+.col-md-3{
+    width: calc(25% - 20px );
+}        
+.col-md-4{
+    width: calc(33.33333333% - 20px );
+}
+.col-md-6{
+    width: calc(50% - 20px );
+}
+.col-md-8{
+    width: calc(66.66666667% - 20px );
+}
+.col-md-9{
+    width: calc(75% - 20px );
+}
+.col-md-12{
+    width: calc(100% - 20px );
+}
+@media(max-width: 768px){
+    .col-sm-1{
+    width: calc(8.33333333% - 20px );
+    }
+    .col-sm-2{
+        width: calc(16.66666666% - 20px );
+    }        
+    .col-sm-3{
+        width: calc(25% - 20px );
+    }        
+    .col-sm-4{
+        width: calc(33.33333333% - 20px );
+    }
+    .col-sm-6{
+        width: calc(50% - 20px );
+    }
+    .col-sm-8{
+        width: calc(66.66666667% - 20px );
+    }
+    .col-sm-9{
+        width: calc(75% - 20px );
+    }
+    .col-sm-12{
+        width: calc(100% - 20px );
+    }
+}
+
+.wrapper > div{
+    font-size: 16px;
+    text-align: center;
+    line-height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
