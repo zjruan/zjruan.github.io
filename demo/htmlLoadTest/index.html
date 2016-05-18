@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面加载</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="highPriority.js"></script>
+    <script src="bodyOnLoad.js"></script>
+</head>
+<body onload="bodyOnLoad()">
+    <div class="wrapper">
+        <script src="index.js"></script>
+        <img src="index.png" alt="">
+        <p id="load-two">加载二...</p>
+        <p>页面完成加载</p>
+    </div>
+    
+    <script src="finallyLoad.js"></script>
+</body>
+</html>

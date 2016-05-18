@@ -1,0 +1,8 @@
+.wrapper > p {
+    line-height: 40px;
+    margin: 20px 0;
+    background: lightblue;
+    color: #666;
+    font-family: 'Microsoft YaHei';
+    border-radius: 8px;
+}
